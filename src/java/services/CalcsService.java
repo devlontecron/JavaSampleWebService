@@ -67,7 +67,7 @@ public class CalcsService {
         return sText;
     }
     
-    @POST
+       @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     public String PostJson(String jobj) throws JSONException, IOException {
@@ -80,7 +80,7 @@ public class CalcsService {
         text.append("Request for Calcs" + "\n");
         log.info(text.toString());
         
-        String calcString = randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
+        JSONObject calcString = randoCalc(args.getCalcs(),args.getLoops(), args.getSleep());
         
         JSONObject calcsOut = new JSONObject();
         calcsOut.append("Output", calcString);
@@ -90,29 +90,29 @@ public class CalcsService {
     
     
     
-    public String randoCalc(int calcPass, int loopPass, int sleepPass) {
+    public JSONObject randoCalc(int calcPass, int loopPass, int sleepPass) throws JSONException {
 
         StringBuilder output = new StringBuilder();
+        
+        JSONObject randoCalcOut = new JSONObject();
         
         int calcs = calcPass;
         int loopsIn = loopPass;
         int sleepIn = sleepPass;
+       
+        double globalArrayTime = 0;
+        double globalTime = 0;
  
-        
-        output.append(" \nCalcs:, " + calcs);
-        output.append(" \nLoops:, " + loopsIn);
-        output.append(" \nSleep:, " + sleepIn);
- 
- 
+        randoCalcOut.append("Calcs", calcs);
+        randoCalcOut.append("Loops", loopsIn);
+        randoCalcOut.append("Sleep", sleepIn);
+
         for (int k = 0; k < loopsIn; k++) {
- 
-            double globalArrayTime = 0;
-            double globalTime = 0;
+
             Random rand = new Random();
             // By not reusing the same variables in the calc, this should prevent
             // compiler optimization... Also each math operation should operate
             // on between operands in different memory locations.
- 
  
             double arrayST = System.currentTimeMillis();
             long[] operand_a = new long[calcs];
@@ -150,16 +150,16 @@ public class CalcsService {
             } catch (InterruptedException ex) {
                 Logger.getLogger(CalcsService.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
- 
- 
-        output.append(" \nOverall Array Time:, " + globalArrayTime);
-        output.append(" \nOverall Calc Time:, " + globalTime + "\n");
- 
+
       }
         
-        return output.toString();
+        randoCalcOut.append("Total Array Time:, ", globalArrayTime);
+        randoCalcOut.append("Average Array Time:, " , globalArrayTime/loopsIn);
+        randoCalcOut.append("Total Calc Time:, " , globalTime);
+        randoCalcOut.append("Average Calc Time:, " , globalTime/loopsIn);
+ 
+        
+        return randoCalcOut;
     }
     
 }
-
