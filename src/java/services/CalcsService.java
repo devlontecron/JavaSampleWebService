@@ -153,10 +153,10 @@ public class CalcsService {
 
       }
         
-        randoCalcOut.append("Total Array Time: ", globalArrayTime);
-        randoCalcOut.append("Average Array Time: " , globalArrayTime/loopsIn);
-        randoCalcOut.append("Total Calc Time: " , globalTime);
-        randoCalcOut.append("Average Calc Time: " , globalTime/loopsIn);
+        randoCalcOut.append("Total Array Time ", globalArrayTime);
+        randoCalcOut.append("Average Array Time " , globalArrayTime/loopsIn);
+        randoCalcOut.append("Total Calc Time " , globalTime);
+        randoCalcOut.append("Average Calc Time " , globalTime/loopsIn);
  
         
         return randoCalcOut;

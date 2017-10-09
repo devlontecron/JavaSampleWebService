@@ -2,8 +2,8 @@
 
 
 
-    json={"\"calcs\"":10000,"\"loops\"":5,"\"sleep\"":1}
+    json={"\"calcs\"":1000,"\"loops\"":1000,"\"sleep\"":1}
     
-    curl -X POST -H "Content-Type: application/json" http://34.228.161.89:8080/fibo/calcs -d $json 
+    curl -X POST -H "Content-Type: application/json" http://54.196.127.145:8080/fibo/calcs -d $json 
     
 
