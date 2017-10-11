@@ -10,11 +10,11 @@ calcsVar=$1
 loopsVar=$2
 threadVar=$3
 sleepVar=$4
-host=34.228.157.217
+host=54.89.191.141
 port=8080
 onesecond=1000
 
-echo "CALCs:, {$calcsVar} LOOPs:, {$loopsVar} THREADs:, {$threadVar} SLEEP:, {$sleepVar}"
+echo "CALCs= {$calcsVar} LOOPs= {$loopsVar} THREADs= {$threadVar} SLEEP= {$sleepVar},"
 
 if [ $threadVar -eq 1 ]
   then
@@ -28,7 +28,7 @@ if [ $threadVar -eq 1 ]
     elapsedtime=`expr $time2 - $time1`
     sleeptime=`echo $onesecond - $elapsedtime | bc -l`
     sleeptimems=`echo $sleeptime/$onesecond | bc -l`
-    echo "\nElapsTime:, $elapsedtime \nSleepTime:, $sleeptimems \n"
+    echo "ElapsTime= $elapsedtime SleepTime= $sleeptimems "
     if (( $sleeptime > 0 ))
     then
       sleep $sleeptimems
@@ -39,7 +39,7 @@ export -f callservice
 
 runsperthread=`echo $loops/$thread | bc -l`
 runsperthread=${runsperthread%.*}
-echo "\nSetting up test: \nrunsperthread=,$runsperthread \nthreads=,$thread \ntotalLoops=,$loops"
+echo "runsperthread=$runsperthread threads=$thread totalLoops=$loops"
 for (( i=1 ; i <= $thread ; i ++))
 do
   arpt+=($runsperthread)

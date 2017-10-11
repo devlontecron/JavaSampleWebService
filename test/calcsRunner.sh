@@ -27,12 +27,9 @@ do
    thread=($i)
 
    echo --Running Test $q.$i
-   sudo ./calcs.sh "${calcs[q]}" "${loops[q]}" "$thread" "$sleep" >> results/Ubuntu_C4.Large_C${calcs[q]}_L${loops[q]}_T${thread}.csv
+   output=`sudo ./calcs.sh "${calcs[q]}" "${loops[q]}" "$thread" "$sleep"` >temp.txt
+   formatted= `./jsonPars.sh temp.txt` >> output.csv
    echo --Test Complete
    
 done
-
-    
-
 done
-
