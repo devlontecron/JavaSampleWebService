@@ -5,18 +5,18 @@
    calcs[3]='10000'
    calcs[4]='100000'
    calcs[5]='250000'
-   calcs[6]='20'
+   #calcs[6]='20'
+   calcs[6]='1000'
    calcs[7]='100'
-   calcs[8]='1000'
 
    loops[1]='20'
    loops[2]='20'
    loops[3]='20'
    loops[4]='20'
    loops[5]='20'
-   loops[6]='500000'
+   #loops[6]='500000'
+   loops[6]='1000'
    loops[7]='100000'
-   loops[8]='1000'
 
 for((q = 1; q<=8; q++))
 do
@@ -27,9 +27,10 @@ do
    thread=($i)
 
    echo --Running Test $q.$i
-   output=`sudo ./calcs.sh "${calcs[q]}" "${loops[q]}" "$thread" "$sleep"` >temp.txt
-   formatted= `./jsonPars.sh temp.txt` >> output.csv
+   output=`sudo ./calcs.sh "${calcs[q]}" "${loops[q]}" "$thread" "$sleep" >temp.txt`
+   formatted= `./jsonPars.sh temp.txt >> output.csv`
    echo --Test Complete
    
 done
+
 done

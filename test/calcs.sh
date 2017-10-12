@@ -14,7 +14,7 @@ host=54.89.191.141
 port=8080
 onesecond=1000
 
-echo "CALCs= {$calcsVar} LOOPs= {$loopsVar} THREADs= {$threadVar} SLEEP= {$sleepVar},"
+echo "THREADs= {$threadVar},"
 
 if [ $threadVar -eq 1 ]
   then
@@ -39,7 +39,7 @@ export -f callservice
 
 runsperthread=`echo $loops/$thread | bc -l`
 runsperthread=${runsperthread%.*}
-echo "runsperthread=$runsperthread threads=$thread totalLoops=$loops"
+#echo "runsperthread=$runsperthread threads=$thread totalLoops=$loops"
 for (( i=1 ; i <= $thread ; i ++))
 do
   arpt+=($runsperthread)

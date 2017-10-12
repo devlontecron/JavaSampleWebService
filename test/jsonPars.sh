@@ -9,7 +9,6 @@ file=$1
 #echo `perl -pe 's/(?<!^)(?=:61:)/\n/g' $file`
 #echo $output
 
-cat $file | sed 's/CALCs=/\n/g' | sed 's/=/,/g' |sed 's/[^0-9,.]*//g' 
-
+cat $file | tr -d '\n' |sed 's/THREADs=/\n/g' | sed 's/=/,/g' |sed 's/[^0-9,.]*//g'
 
 #cat help.txt | cut -d , -f7 | cut -d \" -f01
