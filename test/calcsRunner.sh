@@ -18,6 +18,8 @@
    loops[6]='1000'
    loops[7]='100000'
 
+echo -e "Threads,Calcs,Loops,Sleep,TotalArrayTime,AvgArrayTime,TotalCalcTime,AvgCalcTime,ElapsTime,SleepTime\n" > output.csv
+
 for((q = 1; q<=8; q++))
 do
 
@@ -29,8 +31,10 @@ do
    echo --Running Test $q.$i
    output=`sudo ./calcs.sh "${calcs[q]}" "${loops[q]}" "$thread" "$sleep" >temp.txt`
    formatted= `./jsonPars.sh temp.txt >> output.csv`
+   
    echo --Test Complete
    
 done
-
 done
+
+echo totAvg=`./dataParse.sh output.csv >> output.csv`
